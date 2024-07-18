@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 20px;
+            text-align: left;
+            font-size: 18px;
+        }
+        th {
+            background-color: #24d390;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <center><h1 style="background-color: #24d390 ;padding:20px 20px">PRODUCTOS</h1></center>
+    <form action="/nuevoproducto">
+        <label for="agregar" style="font-size: 24px;">Agregar nuevo producto:</label>
+        <button style="padding: 10px 20px;font-size:13px;color:white ;background-color:green" type="submit">Haz click</button>
+    </form>
+    <table>
+        <tr>
+            <th>PRODUCTO</th>
+            <th>CANTIDAD</th>
+            <th>PRECIO</th>
+            <th></th>
+        </tr>
+        {{range .}}
+        <tr>
+            <form action="/actualizar" method="POST" style="display:inline;">
+                <input type="hidden" name="id" value="{{.ID}}">
+                <td><input type="text" name="producto" value="{{.Producto}}"></td>
+                <td><input type="text" name="cantidad" value="{{.Cantidad}}"></td>
+                <td><input type="text" name="precio" value="{{.Precio}}"></td>
+                <td>
+                    <button style="background-color: green; color:white" type="submit">Actualizar</button>
+                </form>
+                <form action="/eliminar" method="POST" style="display:inline;">
+                    <input type="hidden" name="id" value="{{.ID}}">
+                    <button style="background-color: darkred; color:white" type="submit">Eliminar</button>
+                </form>
+                </td>
+        </tr>
+        {{end}}
+    </table>
+</body>
+</html>
+
